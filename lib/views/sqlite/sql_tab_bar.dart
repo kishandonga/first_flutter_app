@@ -8,26 +8,26 @@ import 'package:flutter_app/views/sqlite/pages/sql_view_data.dart';
 class SQLiteDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new DefaultTabController(
+    return DefaultTabController(
       length: 4,
-      child: new Scaffold(
-        appBar: new AppBar(
-          bottom: new TabBar(
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
             tabs: [
-              new Tab(text: Const.SQLView),
-              new Tab(text: Const.SQLInsert),
-              new Tab(text: Const.SQLUpdate),
-              new Tab(text: Const.SQLDelete),
+              Tab(text: Const.SQLView),
+              Tab(text: Const.SQLInsert),
+              Tab(text: Const.SQLUpdate),
+              Tab(text: Const.SQLDelete),
             ],
           ),
-          title: new Text(Const.SQLite),
+          title: Text(Const.SQLite),
         ),
-        body: new TabBarView(
+        body: TabBarView(
           children: [
-            new ViewStudentData(),
-            new InsertData(),
-            new UpdateData(),
-            new DeleteData(),
+            ViewStudentData(),
+            InsertData(),
+            UpdateData(),
+            DeleteData(),
           ],
         ),
       ),

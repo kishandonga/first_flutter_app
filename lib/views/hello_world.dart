@@ -4,12 +4,12 @@ import 'package:flutter_app/utils/const.dart';
 class HelloWorld extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(Const.HelloWorld),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(Const.HelloWorld),
       ),
-      body: new Center(
-        child: new Text(Const.HelloWorld),
+      body: Center(
+        child: Text(Const.HelloWorld),
       ),
     );
   }

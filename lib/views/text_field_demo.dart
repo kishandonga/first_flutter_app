@@ -7,7 +7,7 @@ class TextFormFieldDemo extends StatefulWidget {
   const TextFormFieldDemo({Key key}) : super(key: key);
 
   @override
-  TextFormFieldDemoState createState() => new TextFormFieldDemoState();
+  TextFormFieldDemoState createState() => TextFormFieldDemoState();
 }
 
 class PersonData {
@@ -37,7 +37,7 @@ class PasswordField extends StatefulWidget {
   final ValueChanged<String> onFieldSubmitted;
 
   @override
-  _PasswordFieldState createState() => new _PasswordFieldState();
+  _PasswordFieldState createState() => _PasswordFieldState();
 }
 
 class _PasswordFieldState extends State<PasswordField> {
@@ -45,27 +45,26 @@ class _PasswordFieldState extends State<PasswordField> {
 
   @override
   Widget build(BuildContext context) {
-    return new TextFormField(
+    return TextFormField(
       key: widget.fieldKey,
       obscureText: _obscureText,
       maxLength: 8,
       onSaved: widget.onSaved,
       validator: widget.validator,
       onFieldSubmitted: widget.onFieldSubmitted,
-      decoration: new InputDecoration(
+      decoration: InputDecoration(
         border: const UnderlineInputBorder(),
         filled: true,
         hintText: widget.hintText,
         labelText: widget.labelText,
         helperText: widget.helperText,
-        suffixIcon: new GestureDetector(
+        suffixIcon: GestureDetector(
           onTap: () {
             setState(() {
               _obscureText = !_obscureText;
             });
           },
-          child:
-              new Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
+          child: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
         ),
       ),
     );
@@ -73,23 +72,22 @@ class _PasswordFieldState extends State<PasswordField> {
 }
 
 class TextFormFieldDemoState extends State<TextFormFieldDemo> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  PersonData person = new PersonData();
+  PersonData person = PersonData();
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState
-        .showSnackBar(new SnackBar(content: new Text(value)));
+    _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(value)));
   }
 
   bool _autovalidate = false;
   bool _formWasEdited = false;
 
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormFieldState<String>> _passwordFieldKey =
-      new GlobalKey<FormFieldState<String>>();
+      GlobalKey<FormFieldState<String>>();
   final _UsNumberTextInputFormatter _phoneNumberFormatter =
-      new _UsNumberTextInputFormatter();
+      _UsNumberTextInputFormatter();
 
   void _handleSubmitted() {
     final FormState form = _formKey.currentState;
@@ -105,7 +103,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
   String _validateName(String value) {
     _formWasEdited = true;
     if (value.isEmpty) return 'Name is required.';
-    final RegExp nameExp = new RegExp(r'^[A-Za-z ]+$');
+    final RegExp nameExp = RegExp(r'^[A-Za-z ]+$');
     if (!nameExp.hasMatch(value))
       return 'Please enter only alphabetical characters.';
     return null;
@@ -113,7 +111,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
 
   String _validatePhoneNumber(String value) {
     _formWasEdited = true;
-    final RegExp phoneExp = new RegExp(r'^\(\d\d\d\) \d\d\d\-\d\d\d\d$');
+    final RegExp phoneExp = RegExp(r'^\(\d\d\d\) \d\d\d\-\d\d\d\d$');
     if (!phoneExp.hasMatch(value))
       return '(###) ###-#### - Enter a US phone number.';
     return null;
@@ -135,17 +133,17 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
     return await showDialog<bool>(
           context: context,
           builder: (BuildContext context) {
-            return new AlertDialog(
+            return AlertDialog(
               title: const Text('This form has errors'),
               content: const Text('Really leave this form?'),
               actions: <Widget>[
-                new FlatButton(
+                FlatButton(
                   child: const Text('YES'),
                   onPressed: () {
                     Navigator.of(context).pop(true);
                   },
                 ),
-                new FlatButton(
+                FlatButton(
                   child: const Text('NO'),
                   onPressed: () {
                     Navigator.of(context).pop(false);
@@ -160,25 +158,25 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       key: _scaffoldKey,
-      appBar: new AppBar(
+      appBar: AppBar(
         title: const Text('Text fields'),
       ),
-      body: new SafeArea(
+      body: SafeArea(
         top: false,
         bottom: false,
-        child: new Form(
+        child: Form(
           key: _formKey,
           autovalidate: _autovalidate,
           onWillPop: _warnUserAboutInvalidData,
-          child: new SingleChildScrollView(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: new Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 const SizedBox(height: 24.0),
-                new TextFormField(
+                TextFormField(
                   decoration: const InputDecoration(
                     border: const UnderlineInputBorder(),
                     filled: true,
@@ -192,7 +190,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                   validator: _validateName,
                 ),
                 const SizedBox(height: 24.0),
-                new TextFormField(
+                TextFormField(
                   decoration: const InputDecoration(
                     border: const UnderlineInputBorder(),
                     filled: true,
@@ -214,7 +212,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                   ],
                 ),
                 const SizedBox(height: 24.0),
-                new TextFormField(
+                TextFormField(
                   decoration: const InputDecoration(
                     border: const UnderlineInputBorder(),
                     filled: true,
@@ -228,7 +226,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                   },
                 ),
                 const SizedBox(height: 24.0),
-                new TextFormField(
+                TextFormField(
                   decoration: const InputDecoration(
                     border: const OutlineInputBorder(),
                     hintText: 'Tell us about yourself',
@@ -238,7 +236,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                   maxLines: 3,
                 ),
                 const SizedBox(height: 24.0),
-                new TextFormField(
+                TextFormField(
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                       border: const OutlineInputBorder(),
@@ -249,7 +247,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                   maxLines: 1,
                 ),
                 const SizedBox(height: 24.0),
-                new PasswordField(
+                PasswordField(
                   fieldKey: _passwordFieldKey,
                   helperText: 'No more than 8 characters.',
                   labelText: 'Password *',
@@ -260,9 +258,9 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                   },
                 ),
                 const SizedBox(height: 24.0),
-                new TextFormField(
+                TextFormField(
                   enabled:
-                      person.password != null && person.password.isNotEmpty,
+                  person.password != null && person.password.isNotEmpty,
                   decoration: const InputDecoration(
                     border: const UnderlineInputBorder(),
                     filled: true,
@@ -273,15 +271,18 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                   validator: _validatePassword,
                 ),
                 const SizedBox(height: 24.0),
-                new Center(
-                  child: new RaisedButton(
+                Center(
+                  child: RaisedButton(
                     child: const Text('SUBMIT'),
                     onPressed: _handleSubmitted,
                   ),
                 ),
                 const SizedBox(height: 24.0),
-                new Text('* indicates required field',
-                    style: Theme.of(context).textTheme.caption),
+                Text('* indicates required field',
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .caption),
                 const SizedBox(height: 24.0),
               ],
             ),
@@ -295,35 +296,34 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
 /// Format incoming numeric text to fit the format of (###) ###-#### ##...
 class _UsNumberTextInputFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-
-    final int newTextLength = newValue.text.length;
-    int selectionIndex = newValue.selection.end;
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue,
+      TextEditingValue Value) {
+    final int TextLength = Value.text.length;
+    int selectionIndex = Value.selection.end;
     int usedSubstringIndex = 0;
-    final StringBuffer newText = new StringBuffer();
-    if (newTextLength >= 1) {
-      newText.write('(');
-      if (newValue.selection.end >= 1) selectionIndex++;
+    final StringBuffer Text = StringBuffer();
+    if (TextLength >= 1) {
+      Text.write('(');
+      if (Value.selection.end >= 1) selectionIndex++;
     }
-    if (newTextLength >= 4) {
-      newText.write(newValue.text.substring(0, usedSubstringIndex = 3) + ') ');
-      if (newValue.selection.end >= 3) selectionIndex += 2;
+    if (TextLength >= 4) {
+      Text.write(Value.text.substring(0, usedSubstringIndex = 3) + ') ');
+      if (Value.selection.end >= 3) selectionIndex += 2;
     }
-    if (newTextLength >= 7) {
-      newText.write(newValue.text.substring(3, usedSubstringIndex = 6) + '-');
-      if (newValue.selection.end >= 6) selectionIndex++;
+    if (TextLength >= 7) {
+      Text.write(Value.text.substring(3, usedSubstringIndex = 6) + '-');
+      if (Value.selection.end >= 6) selectionIndex++;
     }
-    if (newTextLength >= 11) {
-      newText.write(newValue.text.substring(6, usedSubstringIndex = 10) + ' ');
-      if (newValue.selection.end >= 10) selectionIndex++;
+    if (TextLength >= 11) {
+      Text.write(Value.text.substring(6, usedSubstringIndex = 10) + ' ');
+      if (Value.selection.end >= 10) selectionIndex++;
     }
     // Dump the rest.
-    if (newTextLength >= usedSubstringIndex)
-      newText.write(newValue.text.substring(usedSubstringIndex));
-    return new TextEditingValue(
-      text: newText.toString(),
-      selection: new TextSelection.collapsed(offset: selectionIndex),
+    if (TextLength >= usedSubstringIndex)
+      Text.write(Value.text.substring(usedSubstringIndex));
+    return TextEditingValue(
+      text: Text.toString(),
+      selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }
 }

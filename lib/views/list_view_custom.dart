@@ -5,7 +5,7 @@ import 'package:flutter_app/utils/const.dart';
 
 class CategoryStatePage extends StatefulWidget {
   @override
-  CategoryPageState createState() => new CategoryPageState();
+  CategoryPageState createState() => CategoryPageState();
 }
 
 class CategoryPageState extends State<CategoryStatePage> {
@@ -17,36 +17,36 @@ class CategoryPageState extends State<CategoryStatePage> {
     super.initState();
 
     setState(() {
-      list.add(new ItemModel(0, 'foo00'));
-      list.add(new ItemModel(1, 'foo01'));
-      list.add(new ItemModel(2, 'foo02'));
-      list.add(new ItemModel(3, 'foo03'));
-      list.add(new ItemModel(4, 'foo04'));
-      list.add(new ItemModel(5, 'foo05'));
-      list.add(new ItemModel(6, 'foo06'));
-      list.add(new ItemModel(7, 'foo07'));
-      list.add(new ItemModel(8, 'foo08'));
-      list.add(new ItemModel(9, 'foo09'));
-      list.add(new ItemModel(10, 'foo10'));
-      list.add(new ItemModel(11, 'foo11'));
-      list.add(new ItemModel(12, 'foo12'));
-      list.add(new ItemModel(13, 'foo13'));
-      list.add(new ItemModel(14, 'foo14'));
-      list.add(new ItemModel(15, 'foo15'));
-      list.add(new ItemModel(16, 'foo16'));
-      list.add(new ItemModel(17, 'foo17'));
-      list.add(new ItemModel(18, 'foo18'));
-      list.add(new ItemModel(19, 'foo19'));
-      list.add(new ItemModel(20, 'foo20'));
+      list.add(ItemModel(0, 'foo00'));
+      list.add(ItemModel(1, 'foo01'));
+      list.add(ItemModel(2, 'foo02'));
+      list.add(ItemModel(3, 'foo03'));
+      list.add(ItemModel(4, 'foo04'));
+      list.add(ItemModel(5, 'foo05'));
+      list.add(ItemModel(6, 'foo06'));
+      list.add(ItemModel(7, 'foo07'));
+      list.add(ItemModel(8, 'foo08'));
+      list.add(ItemModel(9, 'foo09'));
+      list.add(ItemModel(10, 'foo10'));
+      list.add(ItemModel(11, 'foo11'));
+      list.add(ItemModel(12, 'foo12'));
+      list.add(ItemModel(13, 'foo13'));
+      list.add(ItemModel(14, 'foo14'));
+      list.add(ItemModel(15, 'foo15'));
+      list.add(ItemModel(16, 'foo16'));
+      list.add(ItemModel(17, 'foo17'));
+      list.add(ItemModel(18, 'foo18'));
+      list.add(ItemModel(19, 'foo19'));
+      list.add(ItemModel(20, 'foo20'));
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(title: new Text(Const.ListView)),
-        body: new ListView(
-            padding: new EdgeInsets.only(top: 8.0, right: 0.0, left: 0.0),
+    return Scaffold(
+        appBar: AppBar(title: Text(Const.ListView)),
+        body: ListView(
+            padding: EdgeInsets.only(top: 8.0, right: 0.0, left: 0.0),
             children: buildListCategories(this.list)));
   }
 
@@ -57,8 +57,8 @@ class CategoryPageState extends State<CategoryStatePage> {
       var id = im.id;
       var category = im.category;
 
-      listCategories.add(new ItemCategory(
-          key: new ObjectKey(id),
+      listCategories.add(ItemCategory(
+          key: ObjectKey(id),
           id: id,
           category: category,
           onPressed: () async {
@@ -88,7 +88,7 @@ class ItemCategory extends StatefulWidget {
       : super(key: key);
 
   @override
-  ItemCategoryState createState() => new ItemCategoryState();
+  ItemCategoryState createState() => ItemCategoryState();
 }
 
 class ItemCategoryState extends State<ItemCategory>
@@ -102,11 +102,11 @@ class ItemCategoryState extends State<ItemCategory>
 
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
         duration: const Duration(milliseconds: 246), vsync: this);
-    _animation = new CurvedAnimation(
+    _animation = CurvedAnimation(
       parent: _controller,
-      curve: new Interval(0.0, 1.0, curve: Curves.linear),
+      curve: Interval(0.0, 1.0, curve: Curves.linear),
     );
   }
 
@@ -131,63 +131,63 @@ class ItemCategoryState extends State<ItemCategory>
     final double _width = logicalSize.width;
     this.flingOpening = -(48.0 / _width);
 
-    return new GestureDetector(
+    return GestureDetector(
         onHorizontalDragUpdate: _move,
         onHorizontalDragEnd: _settle,
-        child: new Stack(
+        child: Stack(
           children: <Widget>[
-            new Positioned.fill(
-              child: new Row(
+            Positioned.fill(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  new Container(
-                      decoration: new BoxDecoration(
-                        color: new Color(0xFFE57373),
+                  Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFFE57373),
                       ),
-                      child: new IconButton(
-                          icon: new Icon(Icons.delete),
-                          color: new Color(0xFFFFFFFF),
+                      child: IconButton(
+                          icon: Icon(Icons.delete),
+                          color: Color(0xFFFFFFFF),
                           onPressed: widget.onPressed)),
                 ],
               ),
             ),
-            new SlideTransition(
-                position: new Tween<Offset>(
+            SlideTransition(
+                position: Tween<Offset>(
                   begin: Offset.zero,
-                  end: new Offset(this.flingOpening, 0.0),
+                  end: Offset(this.flingOpening, 0.0),
                 ).animate(_animation),
-                child: new Container(
-                  decoration: new BoxDecoration(
-                    border: new Border(
-                      top: new BorderSide(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
                           style: BorderStyle.solid, color: Colors.black26),
                     ),
-                    color: new Color(0xFFFFFFFF),
+                    color: Color(0xFFFFFFFF),
                   ),
-                  margin: new EdgeInsets.only(top: 0.0, bottom: 0.0),
-                  child: new Row(
+                  margin: EdgeInsets.only(top: 0.0, bottom: 0.0),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      new Expanded(
-                        child: new Row(
+                      Expanded(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            new Container(
-                                margin: new EdgeInsets.only(left: 16.0),
-                                padding: new EdgeInsets.only(
+                            Container(
+                                margin: EdgeInsets.only(left: 16.0),
+                                padding: EdgeInsets.only(
                                     right: 40.0, top: 4.5, bottom: 4.5),
-                                child: new Row(
+                                child: Row(
                                   children: <Widget>[
-                                    new Container(
-                                      margin: new EdgeInsets.only(right: 16.0),
-                                      child: new Icon(
+                                    Container(
+                                      margin: EdgeInsets.only(right: 16.0),
+                                      child: Icon(
                                         Icons.insert_emoticon,
                                         //color: Colors.black,
                                         size: 45.0,
                                       ),
                                     ),
-                                    new Text(widget.category),
+                                    Text(widget.category),
                                   ],
                                 ))
                           ],

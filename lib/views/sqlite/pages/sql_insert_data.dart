@@ -6,37 +6,35 @@ import 'package:flutter_app/views/sqlite/model/student_model.dart';
 class InsertData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        resizeToAvoidBottomPadding: false, body: new StudentForm());
+    return Scaffold(resizeToAvoidBottomPadding: false, body: StudentForm());
   }
 }
 
 class StudentForm extends StatefulWidget {
-
   @override
   StudentFormState createState() {
-    return new StudentFormState();
+    return StudentFormState();
   }
 }
 
 class StudentFormState extends State<StudentForm> {
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  StudentModel studentModel = new StudentModel();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  StudentModel studentModel = StudentModel();
 
   @override
   Widget build(BuildContext context) {
-    return new SingleChildScrollView(
-        child: new Padding(
-            padding: new EdgeInsets.all(16.0),
-            child: new Form(
+    return SingleChildScrollView(
+        child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Form(
               key: _formKey,
-              child: new Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  new TextFormField(
+                  TextFormField(
                     keyboardType: TextInputType.text,
                     initialValue: null,
-                    decoration: new InputDecoration(
+                    decoration: InputDecoration(
                         border: const UnderlineInputBorder(),
                         filled: false,
                         labelText: 'Enter student Name'),
@@ -44,14 +42,15 @@ class StudentFormState extends State<StudentForm> {
                       if (value.isEmpty) {
                         return 'Please enter student name';
                       }
+                      return null;
                     },
                     onSaved: (String value) {
                       studentModel.studentName = value;
                     },
                   ),
-                  new TextFormField(
+                  TextFormField(
                     keyboardType: TextInputType.text,
-                    decoration: new InputDecoration(
+                    decoration: InputDecoration(
                         border: const UnderlineInputBorder(),
                         filled: false,
                         labelText: 'Enter student education'),
@@ -59,14 +58,15 @@ class StudentFormState extends State<StudentForm> {
                       if (value.isEmpty) {
                         return 'Please enter student education';
                       }
+                      return null;
                     },
                     onSaved: (String value) {
                       studentModel.studentEdu = value;
                     },
                   ),
-                  new TextFormField(
+                  TextFormField(
                     keyboardType: TextInputType.number,
-                    decoration: new InputDecoration(
+                    decoration: InputDecoration(
                         border: const UnderlineInputBorder(),
                         filled: false,
                         labelText: 'Enter student fees'),
@@ -74,19 +74,20 @@ class StudentFormState extends State<StudentForm> {
                       if (value.isEmpty) {
                         return 'Please enter student fees';
                       }
+                      return null;
                     },
                     onSaved: (String value) {
                       studentModel.fees = double.parse(value);
                     },
                   ),
-                  new Row(
+                  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        new Padding(
+                        Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          child: new SizedBox(
+                          child: SizedBox(
                               height: 35.0,
-                              child: new RaisedButton(
+                              child: RaisedButton(
                                 color: Colors.blue,
                                 textColor: Colors.white,
                                 onPressed: () async {
@@ -95,18 +96,16 @@ class StudentFormState extends State<StudentForm> {
                                   if (_formKey.currentState.validate()) {
                                     _formKey.currentState.save();
 
-                                    StudentBLL bll = new StudentBLL();
+                                    StudentBLL bll = StudentBLL();
                                     int id = await bll.getCount() + 1;
                                     studentModel.id = id;
                                     bll.insertStudent(studentModel);
 
-                                    Scaffold.of(context).showSnackBar(
-                                        new SnackBar(
-                                            content:
-                                                new Text('Data inserted')));
+                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                        content: Text('Data inserted')));
                                   }
                                 },
-                                child: new Text(Const.Insert),
+                                child: Text(Const.Insert),
                               )),
                         )
                       ]),

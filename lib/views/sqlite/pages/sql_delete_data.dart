@@ -6,14 +6,12 @@ import 'package:flutter_app/views/sqlite/model/student_model.dart';
 
 class DeleteData extends StatefulWidget {
   @override
-  DeleteDataState createState() => new DeleteDataState();
+  DeleteDataState createState() => DeleteDataState();
 }
 
 class DeleteDataState extends State<DeleteData> {
-
   Future<List<StudentModel>> list;
-  StudentBLL bll = new StudentBLL();
-
+  StudentBLL bll = StudentBLL();
 
   @override
   void initState() {
@@ -31,48 +29,47 @@ class DeleteDataState extends State<DeleteData> {
   Widget build(BuildContext context) {
     Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
       List<StudentModel> values = snapshot.data;
-      return new ListView.builder(
-        padding: new EdgeInsets.all(4.0),
+      return ListView.builder(
+        padding: EdgeInsets.all(4.0),
         itemCount: values.length,
         itemBuilder: (BuildContext context, int index) {
-          return new Column(
-            children: <Widget>[
-              new Card(
-                  elevation: 3.0,
-                  child: new ListTile(
-                    trailing: const Icon(Icons.delete),
-                    subtitle: new Text(values[index].studentEdu),
-                    title: new Text(values[index].studentName),
-                    onTap: () async {
-                      int count = await bll.deleteStudent(values[index]);
-                      if (count > 0) {
-                        refreshList();
-                      }
-                    },
-                  )),
-            ],
+          return Card(
+            elevation: 3.0,
+            child: ListTile(
+              trailing: GestureDetector(
+                child: Icon(Icons.delete),
+                onTap: () async {
+                  int count = await bll.deleteStudent(values[index]);
+                  if (count > 0) {
+                    refreshList();
+                  }
+                },
+              ),
+              subtitle: Text(values[index].studentEdu),
+              title: Text(values[index].studentName),
+            ),
           );
         },
       );
     }
 
-    var futureBuilder = new FutureBuilder(
+    var futureBuilder = FutureBuilder(
       future: list,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
           case ConnectionState.waiting:
-            return new Text('loading...');
+            return Text('Loading...');
           default:
             if (snapshot.hasError)
-              return new Text('Error: ${snapshot.error}');
+              return Text('Error: ${snapshot.error}');
             else
               return createListView(context, snapshot);
         }
       },
     );
 
-    return new Scaffold(body: futureBuilder);
+    return Scaffold(body: futureBuilder);
   }
 
   Future<List<StudentModel>> getStudentList() async {

@@ -5,7 +5,7 @@ import 'package:flutter_app/views/sqlite/model/student_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class StudentBLL {
-  DatabaseClient client = new DatabaseClient();
+  DatabaseClient client = DatabaseClient();
   Database db;
 
   static const String studentId = "ID";
@@ -17,7 +17,7 @@ class StudentBLL {
     int id;
     db = await client.open();
     await db.transaction((txn) async {
-      var query = new StringBuffer();
+      var query = StringBuffer();
       query.write(
           "INSERT INTO Student($studentId, $studentName, $studentEdu, $studentFees) VALUES(");
       query.write(model.id);
@@ -49,7 +49,7 @@ class StudentBLL {
 
   Future<int> update(StudentModel model) async {
     db = await client.open();
-    var query = new StringBuffer();
+    var query = StringBuffer();
     query.write("UPDATE Student SET ");
     query.write('$studentName=');
     query.write("'");
@@ -98,7 +98,7 @@ class StudentBLL {
   }
 
   StudentModel fromMap(Map map) {
-    StudentModel model = new StudentModel();
+    StudentModel model = StudentModel();
     model.id = map[studentId];
     model.studentName = map[studentName];
     model.studentEdu = map[studentEdu];

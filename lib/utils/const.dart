@@ -1,5 +1,5 @@
 class Const {
-  static const String AppName = "Flutter Demo";
+  static const String AppName = "Flutter Demo App";
   static const String HelloWorld = "Hello World!";
   static const String SQLite = "SQLite Demo";
   static const String OpenDialog = "Open Dialog";

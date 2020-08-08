@@ -6,15 +6,15 @@ class ListViewPage extends StatefulWidget {
   ListViewPage({Key key}) : super(key: key);
 
   @override
-  _ListViewPage createState() => new _ListViewPage();
+  _ListViewPage createState() => _ListViewPage();
 }
 
 class _ListViewPage extends State<ListViewPage> {
-  List<String> strings = new List();
+  List<String> strings = List();
 
   void _addWeightSave() {
     setState(() {
-      strings.add("new string");
+      strings.add("string");
     });
   }
 
@@ -27,11 +27,11 @@ class _ListViewPage extends State<ListViewPage> {
   }
 
   void showCustomDialog(BuildContext context, String value) {
-    CupertinoAlertDialog dialog = new CupertinoAlertDialog(
+    CupertinoAlertDialog dialog = CupertinoAlertDialog(
         title: const Text('When click on tile'),
-        content: new Text('You selected item => ' + value),
+        content: Text('You selected item => ' + value),
         actions: <Widget>[
-          new CupertinoDialogAction(
+          CupertinoDialogAction(
               child: const Text('OK'),
               isDefaultAction: true,
               onPressed: () {
@@ -44,24 +44,24 @@ class _ListViewPage extends State<ListViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(Const.ListView),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(Const.ListView),
       ),
-      body: new ListView(
+      body: ListView(
         children: strings.map((String string) {
-          return new Padding(
-            padding: new EdgeInsets.all(5.0),
-            child: new Column(
+          return Padding(
+            padding: EdgeInsets.all(5.0),
+            child: Column(
               children: <Widget>[
-                new ListTile(
-                  leading: new Icon(Icons.insert_emoticon, size: 35.0),
-                  title: new Text(string),
+                ListTile(
+                  leading: Icon(Icons.insert_emoticon, size: 35.0),
+                  title: Text(string),
                   onTap: () {
                     showCustomDialog(context, string);
                   },
                 ),
-                new Divider(
+                Divider(
                   height: 2.0,
                   color: Colors.grey,
                 )
@@ -70,10 +70,10 @@ class _ListViewPage extends State<ListViewPage> {
           );
         }).toList(),
       ),
-      floatingActionButton: new FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         onPressed: _addWeightSave,
-        tooltip: 'Add new weight entry',
-        child: new Icon(Icons.add),
+        tooltip: 'Add  weight entry',
+        child: Icon(Icons.add),
       ),
     );
   }

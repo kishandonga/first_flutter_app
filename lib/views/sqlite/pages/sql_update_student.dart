@@ -10,32 +10,32 @@ class UpdateStudentForm extends StatefulWidget {
 
   @override
   UpdateStudentFormState createState() {
-    return new UpdateStudentFormState();
+    return UpdateStudentFormState();
   }
 }
 
 class UpdateStudentFormState extends State<UpdateStudentForm> {
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  StudentModel studentModel = new StudentModel();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  StudentModel studentModel = StudentModel();
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text(Const.Update),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(Const.Update),
         ),
-        body: new SingleChildScrollView(
-            child: new Padding(
-                padding: new EdgeInsets.all(16.0),
-                child: new Form(
+        body: SingleChildScrollView(
+            child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Form(
                   key: _formKey,
-                  child: new Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      new TextFormField(
+                      TextFormField(
                         keyboardType: TextInputType.text,
                         initialValue: widget.model.studentName,
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                             border: const UnderlineInputBorder(),
                             filled: false,
                             labelText: 'Enter student Name'),
@@ -43,15 +43,16 @@ class UpdateStudentFormState extends State<UpdateStudentForm> {
                           if (value.isEmpty) {
                             return 'Please enter student name';
                           }
+                          return null;
                         },
                         onSaved: (String value) {
                           studentModel.studentName = value;
                         },
                       ),
-                      new TextFormField(
+                      TextFormField(
                         keyboardType: TextInputType.text,
                         initialValue: widget.model.studentEdu,
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                             border: const UnderlineInputBorder(),
                             filled: false,
                             labelText: 'Enter student education'),
@@ -59,15 +60,16 @@ class UpdateStudentFormState extends State<UpdateStudentForm> {
                           if (value.isEmpty) {
                             return 'Please enter student education';
                           }
+                          return null;
                         },
                         onSaved: (String value) {
                           studentModel.studentEdu = value;
                         },
                       ),
-                      new TextFormField(
+                      TextFormField(
                         keyboardType: TextInputType.number,
                         initialValue: widget.model.fees.toString(),
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                             border: const UnderlineInputBorder(),
                             filled: false,
                             labelText: 'Enter student fees'),
@@ -75,20 +77,21 @@ class UpdateStudentFormState extends State<UpdateStudentForm> {
                           if (value.isEmpty) {
                             return 'Please enter student fees';
                           }
+                          return null;
                         },
                         onSaved: (String value) {
                           studentModel.fees = double.parse(value);
                         },
                       ),
-                      new Row(
+                      Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            new Padding(
+                            Padding(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 16.0),
-                              child: new SizedBox(
+                              child: SizedBox(
                                   height: 35.0,
-                                  child: new RaisedButton(
+                                  child: RaisedButton(
                                     color: Colors.blue,
                                     textColor: Colors.white,
                                     onPressed: () async {
@@ -97,14 +100,14 @@ class UpdateStudentFormState extends State<UpdateStudentForm> {
                                       if (_formKey.currentState.validate()) {
                                         _formKey.currentState.save();
 
-                                        StudentBLL bll = new StudentBLL();
+                                        StudentBLL bll = StudentBLL();
                                         studentModel.id = widget.model.id;
                                         bll.update(studentModel);
 
                                         Navigator.pop(context, Const.Update);
                                       }
                                     },
-                                    child: new Text(Const.Update),
+                                    child: Text(Const.Update),
                                   )),
                             )
                           ]),
