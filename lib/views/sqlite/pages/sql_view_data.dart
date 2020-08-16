@@ -5,6 +5,7 @@ import 'package:flutter_app/views/sqlite/helper/student_bll.dart';
 import 'package:flutter_app/views/sqlite/model/student_model.dart';
 
 class ViewStudentData extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
@@ -33,7 +34,7 @@ class ViewStudentData extends StatelessWidget {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
           case ConnectionState.waiting:
-            return Text('loading...');
+            return Text('Loading...');
           default:
             if (snapshot.hasError)
               return Text('Error: ${snapshot.error}');
