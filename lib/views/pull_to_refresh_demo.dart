@@ -3,10 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/const.dart';
 
-enum IndicatorType { overscroll, refresh }
-
 class PullToRefreshDemo extends StatefulWidget {
-  const PullToRefreshDemo({Key key}) : super(key: key);
+  const PullToRefreshDemo({Key? key}) : super(key: key);
 
   @override
   PullToRefreshDemoState createState() => PullToRefreshDemoState();
@@ -33,19 +31,23 @@ class PullToRefreshDemoState extends State<PullToRefreshDemo> {
     'N'
   ];
 
-  Future<Null> _handleRefresh() {
-    final Completer<Null> completer = Completer<Null>();
+  Future<void> _handleRefresh() {
+    final Completer<void> completer = Completer<void>();
     Timer(const Duration(seconds: 3), () {
       completer.complete(null);
     });
     return completer.future.then((_) {
-      _scaffoldKey.currentState?.showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
           content: const Text('Refresh complete'),
           action: SnackBarAction(
-              label: 'RETRY',
-              onPressed: () {
-                _refreshIndicatorKey.currentState.show();
-              })));
+            label: 'RETRY',
+            onPressed: () {
+              _refreshIndicatorKey.currentState?.show();
+            },
+          ),
+        ),
+      );
     });
   }
 
@@ -53,12 +55,12 @@ class PullToRefreshDemoState extends State<PullToRefreshDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(title: const Text(Const.PullToRefresh), actions: <Widget>[
+      appBar: AppBar(title: const Text(Const.pullToRefresh), actions: <Widget>[
         IconButton(
             icon: const Icon(Icons.refresh),
             tooltip: 'Refresh',
             onPressed: () {
-              _refreshIndicatorKey.currentState.show();
+              _refreshIndicatorKey.currentState?.show();
             }),
       ]),
       body: RefreshIndicator(

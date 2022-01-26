@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_app/utils/const.dart';
 import 'package:flutter_app/utils/data_provider.dart';
+import 'package:flutter_app/views/animated_opacity_widget_demo.dart';
 import 'package:flutter_app/views/progress_indicator_demo.dart';
 import 'package:flutter_app/views/pull_to_refresh_demo.dart';
 import 'package:flutter_app/views/sqlite/sql_tab_bar.dart';
@@ -16,6 +15,8 @@ import 'list_view_custom.dart';
 import 'modal_bottom_sheet_demo.dart';
 
 class DashboardPage extends StatefulWidget {
+  const DashboardPage({Key? key}) : super(key: key);
+
   @override
   _DashboardPage createState() => _DashboardPage();
 }
@@ -26,11 +27,11 @@ class _DashboardPage extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(Const.AppName)),
+      appBar: AppBar(title: const Text(Const.appName)),
       body: ListView.separated(
         itemCount: items.length,
         separatorBuilder: (BuildContext context, int index) =>
-            Divider(height: 1),
+            const Divider(height: 1),
         itemBuilder: (BuildContext context, int index) {
           var key = items.keys.elementAt(index);
           var value = items.values.elementAt(index);
@@ -45,50 +46,56 @@ class _DashboardPage extends State<DashboardPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        tooltip: Const.OpenDialog,
-        child: Icon(Icons.add),
+        tooltip: Const.openDialog,
+        child: const Icon(Icons.add),
       ),
     );
   }
 
   navigateTo(BuildContext context, key) {
-    var pageRoute;
+    MaterialPageRoute? pageRoute;
     switch (key.toString()) {
-      case Const.HelloWorld:
-        pageRoute = MaterialPageRoute(builder: (context) => HelloWorld());
+      case Const.helloWorld:
+        pageRoute = MaterialPageRoute(builder: (context) => const HelloWorld());
         break;
-      case Const.ListView:
-        pageRoute = MaterialPageRoute(builder: (context) => ListViewPage());
-        break;
-      case Const.ListViewCustom:
+      case Const.listView:
         pageRoute =
-            MaterialPageRoute(builder: (context) => CategoryStatePage());
+            MaterialPageRoute(builder: (context) => const ListViewPage());
         break;
-      case Const.GridView:
-        pageRoute = MaterialPageRoute(builder: (context) => GridViewPage());
-        break;
-      case Const.DateTime:
+      case Const.listViewCustom:
         pageRoute =
-            MaterialPageRoute(builder: (context) => DateAndTimePickerDemo());
+            MaterialPageRoute(builder: (context) => const CategoryStatePage());
         break;
-      case Const.PullToRefresh:
+      case Const.gridView:
         pageRoute =
-            MaterialPageRoute(builder: (context) => PullToRefreshDemo());
+            MaterialPageRoute(builder: (context) => const GridViewPage());
         break;
-      case Const.ProgressIndicator:
+      case Const.dateTime:
+        pageRoute = MaterialPageRoute(
+            builder: (context) => const DateAndTimePickerDemo());
+        break;
+      case Const.pullToRefresh:
         pageRoute =
-            MaterialPageRoute(builder: (context) => ProgressIndicatorDemo());
+            MaterialPageRoute(builder: (context) => const PullToRefreshDemo());
         break;
-      case Const.ModalBottomSheet:
+      case Const.progressIndicator:
+        pageRoute = MaterialPageRoute(
+            builder: (context) => const ProgressIndicatorDemo());
+        break;
+      case Const.modalBottomSheet:
+        pageRoute = MaterialPageRoute(
+            builder: (context) => const ModalBottomSheetDemo());
+        break;
+      case Const.textFieldDemo:
         pageRoute =
-            MaterialPageRoute(builder: (context) => ModalBottomSheetDemo());
+            MaterialPageRoute(builder: (context) => const TextFormFieldDemo());
         break;
-      case Const.TextFieldDemo:
-        pageRoute =
-            MaterialPageRoute(builder: (context) => TextFormFieldDemo());
+      case Const.sqLite:
+        pageRoute = MaterialPageRoute(builder: (context) => const SQLiteDemo());
         break;
-      case Const.SQLite:
-        pageRoute = MaterialPageRoute(builder: (context) => SQLiteDemo());
+      case Const.animatedOpacityDemo:
+        pageRoute = MaterialPageRoute(
+            builder: (context) => const AnimatedOpacityWidgetDemo());
         break;
     }
     if (pageRoute != null) {

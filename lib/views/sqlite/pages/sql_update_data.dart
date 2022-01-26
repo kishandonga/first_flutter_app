@@ -7,7 +7,7 @@ import 'package:flutter_app/views/sqlite/model/student_model.dart';
 import 'package:flutter_app/views/sqlite/pages/sql_update_student.dart';
 
 class UpdateData extends StatefulWidget {
-  const UpdateData({Key key}) : super(key: key);
+  const UpdateData({Key? key}) : super(key: key);
 
   @override
   UpdateDataState createState() {
@@ -16,7 +16,7 @@ class UpdateData extends StatefulWidget {
 }
 
 class UpdateDataState extends State<UpdateData> {
-  Future<List<StudentModel>> studentList;
+  late Future<List<StudentModel>> studentList;
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class UpdateDataState extends State<UpdateData> {
     Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
       List<StudentModel> values = snapshot.data;
       return ListView.builder(
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         itemCount: values.length,
         itemBuilder: (BuildContext context, int index) {
           return Column(
@@ -46,14 +46,14 @@ class UpdateDataState extends State<UpdateData> {
                       subtitle: Text(values[index].studentEdu),
                       title: Text(values[index].studentName),
                       onTap: () async {
-                        String result = await Navigator.push(
+                        String? result = await Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
                                     UpdateStudentForm(values[index])));
 
                         //Update list
-                        if (result == Const.Update) {
+                        if (result != null && result == Const.update) {
                           setState(() {
                             studentList = getStudentList();
                           });
@@ -71,12 +71,13 @@ class UpdateDataState extends State<UpdateData> {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
           case ConnectionState.waiting:
-            return Text('loading...');
+            return const Text('loading...');
           default:
-            if (snapshot.hasError)
+            if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
-            else
+            } else {
               return createListView(context, snapshot);
+            }
         }
       },
     );

@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/const.dart';
 
 class ProgressIndicatorDemo extends StatefulWidget {
+  const ProgressIndicatorDemo({Key? key}) : super(key: key);
+
   @override
   _ProgressIndicatorDemoState createState() => _ProgressIndicatorDemoState();
 }
 
 class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -24,9 +26,11 @@ class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
         curve: const Interval(0.0, 0.9, curve: Curves.fastOutSlowIn),
         reverseCurve: Curves.fastOutSlowIn)
       ..addStatusListener((AnimationStatus status) {
-        if (status == AnimationStatus.dismissed)
+        if (status == AnimationStatus.dismissed) {
           _controller.forward();
-        else if (status == AnimationStatus.completed) _controller.reverse();
+        } else if (status == AnimationStatus.completed) {
+          _controller.reverse();
+        }
       });
   }
 
@@ -56,9 +60,9 @@ class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
     });
   }
 
-  Widget _buildIndicators(BuildContext context, Widget child) {
+  Widget _buildIndicators(BuildContext context, Widget? child) {
     final List<Widget> indicators = <Widget>[
-      const SizedBox(width: 200.0, child: const LinearProgressIndicator()),
+      const SizedBox(width: 200.0, child: LinearProgressIndicator()),
       const LinearProgressIndicator(),
       const LinearProgressIndicator(),
       LinearProgressIndicator(value: _animation.value),
@@ -81,11 +85,10 @@ class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
     ];
     return Column(
       children: indicators
-          .map((Widget c) =>
-          Container(
+          .map((Widget c) => Container(
               child: c,
               margin:
-              const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0)))
+                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0)))
           .toList(),
     );
   }
@@ -93,14 +96,11 @@ class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(Const.ProgressIndicator)),
+      appBar: AppBar(title: const Text(Const.progressIndicator)),
       body: Center(
         child: SingleChildScrollView(
           child: DefaultTextStyle(
-            style: Theme
-                .of(context)
-                .textTheme
-                .headline6,
+            style: Theme.of(context).textTheme.headline6!,
             child: GestureDetector(
               onTap: _handleTap,
               behavior: HitTestBehavior.opaque,

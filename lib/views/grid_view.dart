@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/const.dart';
 
 class GridViewPage extends StatelessWidget {
+  const GridViewPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(Const.GridView),
+          title: const Text(Const.gridView),
         ),
         body: Builder(builder: (BuildContext context) {
           return Container(
@@ -49,6 +51,6 @@ class GridViewPage extends StatelessWidget {
   }
 
   void showInSnackBar(BuildContext context, String value) {
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(value)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value)));
   }
 }

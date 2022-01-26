@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseClient {
-  Database db;
+  late Database db;
 
   Future<Database> open() async {
     Directory path = await getApplicationDocumentsDirectory();
@@ -15,10 +15,8 @@ class DatabaseClient {
     db = await openDatabase(dbPath, version: 1,
         onCreate: (Database database, int version) async {
       // When creating the db, create the table
-      await database.execute("CREATE TABLE IF NOT EXISTS Student (${StudentBLL
-                  .studentId} INTEGER PRIMARY_KEY, ${StudentBLL
-                  .studentName} TEXT, ${StudentBLL
-                  .studentEdu} TEXT, ${StudentBLL.studentFees} REAL)");
+      await database.execute(
+          "CREATE TABLE IF NOT EXISTS Student (${StudentBLL.studentId} INTEGER PRIMARY_KEY, ${StudentBLL.studentName} TEXT, ${StudentBLL.studentEdu} TEXT, ${StudentBLL.studentFees} REAL)");
     });
 
     return db;

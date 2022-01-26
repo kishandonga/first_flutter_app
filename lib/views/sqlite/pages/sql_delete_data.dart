@@ -5,12 +5,14 @@ import 'package:flutter_app/views/sqlite/helper/student_bll.dart';
 import 'package:flutter_app/views/sqlite/model/student_model.dart';
 
 class DeleteData extends StatefulWidget {
+  const DeleteData({Key? key}) : super(key: key);
+
   @override
   DeleteDataState createState() => DeleteDataState();
 }
 
 class DeleteDataState extends State<DeleteData> {
-  Future<List<StudentModel>> list;
+  late Future<List<StudentModel>> list;
   StudentBLL bll = StudentBLL();
 
   @override
@@ -30,14 +32,14 @@ class DeleteDataState extends State<DeleteData> {
     Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
       List<StudentModel> values = snapshot.data;
       return ListView.builder(
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         itemCount: values.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
             elevation: 3.0,
             child: ListTile(
               trailing: GestureDetector(
-                child: Icon(Icons.delete),
+                child: const Icon(Icons.delete),
                 onTap: () async {
                   int count = await bll.deleteStudent(values[index]);
                   if (count > 0) {
@@ -59,12 +61,13 @@ class DeleteDataState extends State<DeleteData> {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
           case ConnectionState.waiting:
-            return Text('Loading...');
+            return const Text('Loading...');
           default:
-            if (snapshot.hasError)
+            if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
-            else
+            } else {
               return createListView(context, snapshot);
+            }
         }
       },
     );

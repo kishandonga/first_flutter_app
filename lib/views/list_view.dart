@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/const.dart';
 
 class ListViewPage extends StatefulWidget {
-  ListViewPage({Key key}) : super(key: key);
+  const ListViewPage({Key? key}) : super(key: key);
 
   @override
   _ListViewPage createState() => _ListViewPage();
 }
 
 class _ListViewPage extends State<ListViewPage> {
-  List<String> strings = List();
+  List<String> strings = [];
 
   void _addWeightSave() {
     setState(() {
@@ -18,7 +18,7 @@ class _ListViewPage extends State<ListViewPage> {
     });
   }
 
-  void buildDialog({BuildContext context, Widget child}) {
+  void buildDialog(BuildContext context, Widget child) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -39,29 +39,29 @@ class _ListViewPage extends State<ListViewPage> {
               }),
         ]);
 
-    buildDialog(context: context, child: dialog);
+    buildDialog(context, dialog);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Const.ListView),
+        title: const Text(Const.listView),
       ),
       body: ListView(
         children: strings.map((String string) {
           return Padding(
-            padding: EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(5.0),
             child: Column(
               children: <Widget>[
                 ListTile(
-                  leading: Icon(Icons.insert_emoticon, size: 35.0),
+                  leading: const Icon(Icons.insert_emoticon, size: 35.0),
                   title: Text(string),
                   onTap: () {
                     showCustomDialog(context, string);
                   },
                 ),
-                Divider(
+                const Divider(
                   height: 2.0,
                   color: Colors.grey,
                 )
@@ -73,7 +73,7 @@ class _ListViewPage extends State<ListViewPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _addWeightSave,
         tooltip: 'Add  weight entry',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

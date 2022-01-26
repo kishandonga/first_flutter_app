@@ -5,13 +5,14 @@ import 'package:flutter_app/views/sqlite/helper/student_bll.dart';
 import 'package:flutter_app/views/sqlite/model/student_model.dart';
 
 class ViewStudentData extends StatelessWidget {
+  const ViewStudentData({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
       List<StudentModel> values = snapshot.data;
       return ListView.builder(
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         itemCount: values.length,
         itemBuilder: (BuildContext context, int index) {
           return Column(
@@ -34,12 +35,13 @@ class ViewStudentData extends StatelessWidget {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
           case ConnectionState.waiting:
-            return Text('Loading...');
+            return const Text('Loading...');
           default:
-            if (snapshot.hasError)
+            if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
-            else
+            } else {
               return createListView(context, snapshot);
+            }
         }
       },
     );

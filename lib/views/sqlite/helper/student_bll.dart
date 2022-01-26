@@ -1,12 +1,13 @@
 import 'dart:async';
 
-import 'package:flutter_app/views/sqlite/helper/databse_client.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_app/views/sqlite/helper/database_client.dart';
 import 'package:flutter_app/views/sqlite/model/student_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class StudentBLL {
   DatabaseClient client = DatabaseClient();
-  Database db;
+  late Database db;
 
   static const String studentId = "ID";
   static const String studentName = "NAME";
@@ -14,7 +15,7 @@ class StudentBLL {
   static const String studentFees = "FEES";
 
   Future<int> insertStudent(StudentModel model) async {
-    int id;
+    int id = 0;
     db = await client.open();
     await db.transaction((txn) async {
       var query = StringBuffer();
@@ -67,7 +68,7 @@ class StudentBLL {
     query.write('$studentId=');
     query.write(model.id);
 
-    print("TAG_DATA " + query.toString());
+    debugPrint("TAG_DATA " + query.toString());
     int count = await db.rawUpdate(query.toString());
     client.close();
     return count;
@@ -85,16 +86,18 @@ class StudentBLL {
     List<Map> mapList = await db.rawQuery('SELECT * FROM Student');
     client.close();
     List<StudentModel> listModel = [];
-    mapList.forEach((map) => listModel.add(fromMap(map)));
+    for (var map in mapList) {
+      listModel.add(fromMap(map));
+    }
     return listModel;
   }
 
   Future<int> getCount() async {
     db = await client.open();
-    int count = Sqflite.firstIntValue(
+    int? count = Sqflite.firstIntValue(
         await db.rawQuery("SELECT COUNT(*) FROM Student"));
     client.close();
-    return count;
+    return count ?? 0;
   }
 
   StudentModel fromMap(Map map) {
