@@ -1,17 +1,17 @@
 import 'dart:ui' as ui;
 
+import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/const.dart';
 
 class CategoryStatePage extends StatefulWidget {
   const CategoryStatePage({Key? key}) : super(key: key);
 
   @override
-  CategoryPageState createState() => CategoryPageState();
+  State<CategoryStatePage> createState() => CategoryPageState();
 }
 
 class CategoryPageState extends State<CategoryStatePage> {
-  List<Widget> listCategories = [];
+  List listCategories = [];
   List<ItemModel> list = [];
 
   @override
@@ -46,14 +46,16 @@ class CategoryPageState extends State<CategoryStatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text(Const.listView)),
-        body: ListView(
-            padding: const EdgeInsets.only(top: 8.0, right: 0.0, left: 0.0),
-            children: buildListCategories(list)));
+      appBar: AppBar(title: const Text(Const.listView)),
+      body: ListView(
+        padding: const EdgeInsets.only(top: 8.0, right: 0.0, left: 0.0),
+        children: buildListCategories(list),
+      ),
+    );
   }
 
   List<Widget> buildListCategories(List<ItemModel> list) {
-    listCategories = [];
+    List<Widget> listCategories = [];
 
     for (var im in list) {
       var id = im.id;
@@ -91,7 +93,7 @@ class ItemCategory extends StatefulWidget {
       : super(key: key);
 
   @override
-  ItemCategoryState createState() => ItemCategoryState();
+  State<ItemCategory> createState() => ItemCategoryState();
 }
 
 class ItemCategoryState extends State<ItemCategory>
@@ -130,18 +132,18 @@ class ItemCategoryState extends State<ItemCategory>
   @override
   Widget build(BuildContext context) {
     final ui.Size logicalSize = MediaQuery.of(context).size;
-    final double _width = logicalSize.width;
-    flingOpening = -(48.0 / _width);
+    final double width = logicalSize.width;
+    flingOpening = -(48.0 / width);
 
     return GestureDetector(
         onHorizontalDragUpdate: _move,
         onHorizontalDragEnd: _settle,
         child: Stack(
-          children: <Widget>[
+          children: [
             Positioned.fill(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
+                children: [
                   Container(
                       decoration: const BoxDecoration(
                         color: Color(0xFFE57373),
@@ -170,17 +172,17 @@ class ItemCategoryState extends State<ItemCategory>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
+                    children: [
                       Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
+                          children: [
                             Container(
                                 margin: const EdgeInsets.only(left: 16.0),
                                 padding: const EdgeInsets.only(
                                     right: 40.0, top: 4.5, bottom: 4.5),
                                 child: Row(
-                                  children: <Widget>[
+                                  children: [
                                     Container(
                                       margin:
                                           const EdgeInsets.only(right: 16.0),

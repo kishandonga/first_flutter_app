@@ -1,50 +1,46 @@
+import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/const.dart';
 
 class AnimatedOpacityWidgetDemo extends StatefulWidget {
   const AnimatedOpacityWidgetDemo({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    return _AnimatedOpacityWidgetDemoState();
-  }
+  State<StatefulWidget> createState() => _AnimatedOpacityWidgetDemoState();
 }
 
 class _AnimatedOpacityWidgetDemoState extends State<AnimatedOpacityWidgetDemo> {
-  bool loading = true;
+  bool opacityLevel = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(Const.animatedOpacityDemo)),
-      body: Stack(
-        children: <Widget>[
-          Center(
-            child: GestureDetector(
-              onTap: _toggle,
-              child: const Text("WELCOME"),
+      appBar: AppBar(
+        title: const Text(Const.animatedOpacityDemo),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Tap on the below button',
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
-          IgnorePointer(
-            ignoring: !loading,
-            child: AnimatedOpacity(
-              opacity: loading ? 1 : 0,
-              duration: const Duration(milliseconds: 500),
-              child: Container(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                child: Center(
-                  child: SizedBox(
-                    width: 24,
-                    height: 24,
-                    child: GestureDetector(
-                      onTap: _toggle,
-                      child: const CircularProgressIndicator(),
-                    ),
-                  ),
+          ElevatedButton(
+            onPressed: _toggle,
+            child: const Text('Click'),
+          ),
+          Expanded(
+            child: Center(
+              child: AnimatedOpacity(
+                opacity: opacityLevel ? 0 : 1,
+                duration: const Duration(seconds: 3),
+                child: const FlutterLogo(
+                  size: 200,
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -52,7 +48,7 @@ class _AnimatedOpacityWidgetDemoState extends State<AnimatedOpacityWidgetDemo> {
 
   _toggle() {
     setState(() {
-      loading = !loading;
+      opacityLevel = !opacityLevel;
     });
   }
 }

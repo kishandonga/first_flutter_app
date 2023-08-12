@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:first_flutter_app/views/sqlite/helper/student_bll.dart';
+import 'package:first_flutter_app/views/sqlite/model/student_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/views/sqlite/helper/student_bll.dart';
-import 'package:flutter_app/views/sqlite/model/student_model.dart';
 
 class ViewStudentData extends StatelessWidget {
   const ViewStudentData({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class ViewStudentData extends StatelessWidget {
         itemCount: values.length,
         itemBuilder: (BuildContext context, int index) {
           return Column(
-            children: <Widget>[
+            children: [
               Card(
                   elevation: 3.0,
                   child: ListTile(

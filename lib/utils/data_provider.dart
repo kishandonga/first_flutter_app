@@ -1,4 +1,4 @@
-import 'package:flutter_app/utils/const.dart';
+import 'package:first_flutter_app/utils/const.dart';
 
 class DataProvider {
   static Map<String, String> getDashboardList() {

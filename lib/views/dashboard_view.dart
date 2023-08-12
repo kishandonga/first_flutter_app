@@ -1,11 +1,11 @@
+import 'package:first_flutter_app/utils/const.dart';
+import 'package:first_flutter_app/utils/data_provider.dart';
+import 'package:first_flutter_app/views/animated_opacity_widget_demo.dart';
+import 'package:first_flutter_app/views/progress_indicator_demo.dart';
+import 'package:first_flutter_app/views/pull_to_refresh_demo.dart';
+import 'package:first_flutter_app/views/sqlite/sql_tab_bar.dart';
+import 'package:first_flutter_app/views/text_field_demo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/const.dart';
-import 'package:flutter_app/utils/data_provider.dart';
-import 'package:flutter_app/views/animated_opacity_widget_demo.dart';
-import 'package:flutter_app/views/progress_indicator_demo.dart';
-import 'package:flutter_app/views/pull_to_refresh_demo.dart';
-import 'package:flutter_app/views/sqlite/sql_tab_bar.dart';
-import 'package:flutter_app/views/text_field_demo.dart';
 
 import 'date_time_picker.dart';
 import 'grid_view.dart';
@@ -18,7 +18,7 @@ class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
 
   @override
-  _DashboardPage createState() => _DashboardPage();
+  State<DashboardPage> createState() => _DashboardPage();
 }
 
 class _DashboardPage extends State<DashboardPage> {

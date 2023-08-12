@@ -1,5 +1,5 @@
+import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/const.dart';
 
 class GridViewPage extends StatelessWidget {
   const GridViewPage({Key? key}) : super(key: key);

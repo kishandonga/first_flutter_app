@@ -1,14 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter_app/views/sqlite/helper/database_client.dart';
-import 'package:flutter_app/views/sqlite/model/student_model.dart';
+import 'package:first_flutter_app/views/sqlite/helper/database_client.dart';
+import 'package:first_flutter_app/views/sqlite/model/student_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class StudentBLL {
-  DatabaseClient client = DatabaseClient();
-  late Database db;
-
   static const String studentId = "ID";
   static const String studentName = "NAME";
   static const String studentEdu = "EDU";
@@ -16,7 +12,7 @@ class StudentBLL {
 
   Future<int> insertStudent(StudentModel model) async {
     int id = 0;
-    db = await client.open();
+    var db = DatabaseClient.instance.database();
     await db.transaction((txn) async {
       var query = StringBuffer();
       query.write(
@@ -33,23 +29,20 @@ class StudentBLL {
       query.write(",");
       query.write(model.fees);
       query.write(");");
-
       id = await txn.rawInsert(query.toString());
     });
-    await client.close();
     return id;
   }
 
   Future<int> deleteStudent(StudentModel model) async {
-    db = await client.open();
+    var db = DatabaseClient.instance.database();
     int count = await db
         .rawDelete('DELETE FROM Student WHERE $studentId = ?', [model.id]);
-    client.close();
     return count;
   }
 
   Future<int> update(StudentModel model) async {
-    db = await client.open();
+    var db = DatabaseClient.instance.database();
     var query = StringBuffer();
     query.write("UPDATE Student SET ");
     query.write('$studentName=');
@@ -68,23 +61,19 @@ class StudentBLL {
     query.write('$studentId=');
     query.write(model.id);
 
-    debugPrint("TAG_DATA " + query.toString());
     int count = await db.rawUpdate(query.toString());
-    client.close();
     return count;
   }
 
   Future<List<Map>> getStudentMapList() async {
-    db = await client.open();
+    var db = DatabaseClient.instance.database();
     List<Map> map = await db.rawQuery('SELECT * FROM Student');
-    client.close();
     return map;
   }
 
   Future<List<StudentModel>> getStudentList() async {
-    db = await client.open();
+    var db = DatabaseClient.instance.database();
     List<Map> mapList = await db.rawQuery('SELECT * FROM Student');
-    client.close();
     List<StudentModel> listModel = [];
     for (var map in mapList) {
       listModel.add(fromMap(map));
@@ -93,10 +82,9 @@ class StudentBLL {
   }
 
   Future<int> getCount() async {
-    db = await client.open();
+    var db = DatabaseClient.instance.database();
     int? count = Sqflite.firstIntValue(
         await db.rawQuery("SELECT COUNT(*) FROM Student"));
-    client.close();
     return count ?? 0;
   }
 

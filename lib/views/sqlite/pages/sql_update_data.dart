@@ -1,18 +1,16 @@
 import 'dart:async';
 
+import 'package:first_flutter_app/utils/const.dart';
+import 'package:first_flutter_app/views/sqlite/helper/student_bll.dart';
+import 'package:first_flutter_app/views/sqlite/model/student_model.dart';
+import 'package:first_flutter_app/views/sqlite/pages/sql_update_student.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/const.dart';
-import 'package:flutter_app/views/sqlite/helper/student_bll.dart';
-import 'package:flutter_app/views/sqlite/model/student_model.dart';
-import 'package:flutter_app/views/sqlite/pages/sql_update_student.dart';
 
 class UpdateData extends StatefulWidget {
   const UpdateData({Key? key}) : super(key: key);
 
   @override
-  UpdateDataState createState() {
-    return UpdateDataState();
-  }
+  State<UpdateData> createState() => UpdateDataState();
 }
 
 class UpdateDataState extends State<UpdateData> {
@@ -38,7 +36,7 @@ class UpdateDataState extends State<UpdateData> {
         itemCount: values.length,
         itemBuilder: (BuildContext context, int index) {
           return Column(
-            children: <Widget>[
+            children: [
               Card(
                   elevation: 3.0,
                   child: ListTile(

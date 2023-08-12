@@ -7,7 +7,7 @@ class TextFormFieldDemo extends StatefulWidget {
   const TextFormFieldDemo({Key? key}) : super(key: key);
 
   @override
-  TextFormFieldDemoState createState() => TextFormFieldDemoState();
+  State<TextFormFieldDemo> createState() => TextFormFieldDemoState();
 }
 
 class PersonData {
@@ -38,7 +38,7 @@ class PasswordField extends StatefulWidget {
   final ValueChanged<String>? onFieldSubmitted;
 
   @override
-  _PasswordFieldState createState() => _PasswordFieldState();
+  State<PasswordField> createState() => _PasswordFieldState();
 }
 
 class _PasswordFieldState extends State<PasswordField> {
@@ -139,7 +139,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
             return AlertDialog(
               title: const Text('This form has errors'),
               content: const Text('Really leave this form?'),
-              actions: <Widget>[
+              actions: [
                 ElevatedButton(
                   child: const Text('YES'),
                   onPressed: () {
@@ -178,7 +178,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
+              children: [
                 const SizedBox(height: 24.0),
                 TextFormField(
                   decoration: const InputDecoration(
@@ -276,13 +276,15 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                 const SizedBox(height: 24.0),
                 Center(
                   child: ElevatedButton(
-                    child: const Text('SUBMIT'),
                     onPressed: _handleSubmitted,
+                    child: const Text('SUBMIT'),
                   ),
                 ),
                 const SizedBox(height: 24.0),
-                Text('* indicates required field',
-                    style: Theme.of(context).textTheme.caption),
+                Text(
+                  '* indicates required field',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
                 const SizedBox(height: 24.0),
               ],
             ),
@@ -307,15 +309,15 @@ class _UsNumberTextInputFormatter extends TextInputFormatter {
       if (value.selection.end >= 1) selectionIndex++;
     }
     if (textLength >= 4) {
-      text.write(value.text.substring(0, usedSubstringIndex = 3) + ') ');
+      text.write('${value.text.substring(0, usedSubstringIndex = 3)}) ');
       if (value.selection.end >= 3) selectionIndex += 2;
     }
     if (textLength >= 7) {
-      text.write(value.text.substring(3, usedSubstringIndex = 6) + '-');
+      text.write('${value.text.substring(3, usedSubstringIndex = 6)}-');
       if (value.selection.end >= 6) selectionIndex++;
     }
     if (textLength >= 11) {
-      text.write(value.text.substring(6, usedSubstringIndex = 10) + ' ');
+      text.write('${value.text.substring(6, usedSubstringIndex = 10)} ');
       if (value.selection.end >= 10) selectionIndex++;
     }
     // Dump the rest.

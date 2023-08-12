@@ -1,9 +1,9 @@
+import 'package:first_flutter_app/utils/const.dart';
+import 'package:first_flutter_app/views/sqlite/pages/sql_delete_data.dart';
+import 'package:first_flutter_app/views/sqlite/pages/sql_insert_data.dart';
+import 'package:first_flutter_app/views/sqlite/pages/sql_update_data.dart';
+import 'package:first_flutter_app/views/sqlite/pages/sql_view_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/const.dart';
-import 'package:flutter_app/views/sqlite/pages/sql_delete_data.dart';
-import 'package:flutter_app/views/sqlite/pages/sql_insert_data.dart';
-import 'package:flutter_app/views/sqlite/pages/sql_update_data.dart';
-import 'package:flutter_app/views/sqlite/pages/sql_view_data.dart';
 
 class SQLiteDemo extends StatelessWidget {
   const SQLiteDemo({Key? key}) : super(key: key);

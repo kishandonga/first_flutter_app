@@ -29,7 +29,7 @@ class _InputDropdown extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
+          children: [
             Text(valueText, style: valueStyle),
             Icon(Icons.arrow_drop_down,
                 color: Theme.of(context).brightness == Brightness.light
@@ -79,10 +79,10 @@ class _DateTimePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle? valueStyle = Theme.of(context).textTheme.headline6;
+    final TextStyle? valueStyle = Theme.of(context).textTheme.titleLarge;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
-      children: <Widget>[
+      children: [
         Expanded(
           flex: 4,
           child: _InputDropdown(
@@ -114,7 +114,7 @@ class DateAndTimePickerDemo extends StatefulWidget {
   const DateAndTimePickerDemo({Key? key}) : super(key: key);
 
   @override
-  _DateAndTimePickerDemoState createState() => _DateAndTimePickerDemoState();
+  State<DateAndTimePickerDemo> createState() => _DateAndTimePickerDemoState();
 }
 
 class _DateAndTimePickerDemoState extends State<DateAndTimePickerDemo> {
@@ -140,14 +140,14 @@ class _DateAndTimePickerDemoState extends State<DateAndTimePickerDemo> {
           bottom: false,
           child: ListView(
             padding: const EdgeInsets.all(16.0),
-            children: <Widget>[
+            children: [
               TextField(
                 enabled: true,
                 decoration: const InputDecoration(
                   labelText: 'Event name',
                   border: OutlineInputBorder(),
                 ),
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               TextField(
                 decoration: const InputDecoration(
@@ -155,7 +155,7 @@ class _DateAndTimePickerDemoState extends State<DateAndTimePickerDemo> {
                 ),
                 style: Theme.of(context)
                     .textTheme
-                    .headline4
+                    .headlineMedium
                     ?.copyWith(fontSize: 20.0),
               ),
               _DateTimePicker(

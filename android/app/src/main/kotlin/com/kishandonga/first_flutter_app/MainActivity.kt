@@ -1,4 +1,4 @@
-package com.kishandonga.flutter_app
+package com.kishandonga.first_flutter_app
 
 import io.flutter.embedding.android.FlutterActivity
 

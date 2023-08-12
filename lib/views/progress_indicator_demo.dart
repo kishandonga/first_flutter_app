@@ -1,11 +1,11 @@
+import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/const.dart';
 
 class ProgressIndicatorDemo extends StatefulWidget {
   const ProgressIndicatorDemo({Key? key}) : super(key: key);
 
   @override
-  _ProgressIndicatorDemoState createState() => _ProgressIndicatorDemoState();
+  State<ProgressIndicatorDemo> createState() => _ProgressIndicatorDemoState();
 }
 
 class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
@@ -61,14 +61,14 @@ class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
   }
 
   Widget _buildIndicators(BuildContext context, Widget? child) {
-    final List<Widget> indicators = <Widget>[
+    final List<Widget> indicators = [
       const SizedBox(width: 200.0, child: LinearProgressIndicator()),
       const LinearProgressIndicator(),
       const LinearProgressIndicator(),
       LinearProgressIndicator(value: _animation.value),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
+        children: [
           const CircularProgressIndicator(),
           SizedBox(
               width: 20.0,
@@ -86,9 +86,10 @@ class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
     return Column(
       children: indicators
           .map((Widget c) => Container(
-              child: c,
-              margin:
-                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0)))
+                margin: const EdgeInsets.symmetric(
+                    vertical: 15.0, horizontal: 20.0),
+                child: c,
+              ))
           .toList(),
     );
   }
@@ -100,7 +101,7 @@ class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
       body: Center(
         child: SingleChildScrollView(
           child: DefaultTextStyle(
-            style: Theme.of(context).textTheme.headline6!,
+            style: Theme.of(context).textTheme.titleLarge!,
             child: GestureDetector(
               onTap: _handleTap,
               behavior: HitTestBehavior.opaque,

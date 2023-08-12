@@ -1,14 +1,14 @@
 import 'dart:async';
 
+import 'package:first_flutter_app/views/sqlite/helper/student_bll.dart';
+import 'package:first_flutter_app/views/sqlite/model/student_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/views/sqlite/helper/student_bll.dart';
-import 'package:flutter_app/views/sqlite/model/student_model.dart';
 
 class DeleteData extends StatefulWidget {
   const DeleteData({Key? key}) : super(key: key);
 
   @override
-  DeleteDataState createState() => DeleteDataState();
+  State<DeleteData> createState() => DeleteDataState();
 }
 
 class DeleteDataState extends State<DeleteData> {

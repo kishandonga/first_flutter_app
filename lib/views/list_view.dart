@@ -1,12 +1,12 @@
+import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/const.dart';
 
 class ListViewPage extends StatefulWidget {
   const ListViewPage({Key? key}) : super(key: key);
 
   @override
-  _ListViewPage createState() => _ListViewPage();
+  State<ListViewPage> createState() => _ListViewPage();
 }
 
 class _ListViewPage extends State<ListViewPage> {
@@ -29,14 +29,15 @@ class _ListViewPage extends State<ListViewPage> {
   void showCustomDialog(BuildContext context, String value) {
     CupertinoAlertDialog dialog = CupertinoAlertDialog(
         title: const Text('When click on tile'),
-        content: Text('You selected item => ' + value),
-        actions: <Widget>[
+        content: Text('You selected item => $value'),
+        actions: [
           CupertinoDialogAction(
-              child: const Text('OK'),
-              isDefaultAction: true,
-              onPressed: () {
-                Navigator.pop(context, 'OK');
-              }),
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context, 'OK');
+            },
+            child: const Text('OK'),
+          ),
         ]);
 
     buildDialog(context, dialog);
@@ -53,7 +54,7 @@ class _ListViewPage extends State<ListViewPage> {
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: Column(
-              children: <Widget>[
+              children: [
                 ListTile(
                   leading: const Icon(Icons.insert_emoticon, size: 35.0),
                   title: Text(string),

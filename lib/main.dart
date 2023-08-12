@@ -1,8 +1,12 @@
+import 'package:first_flutter_app/utils/const.dart';
+import 'package:first_flutter_app/views/dashboard_view.dart';
+import 'package:first_flutter_app/views/sqlite/helper/database_client.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/const.dart';
-import 'package:flutter_app/views/dashboard_view.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseClient.instance.init();
+
   runApp(MaterialApp(
     title: Const.appName,
     theme: ThemeData(
