@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:first_flutter_app/views/sqlite/helper/student_bll.dart';
+import 'package:first_flutter_app/pages/sqlite/helper/student_bll.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseClient {

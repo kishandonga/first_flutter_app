@@ -1,9 +1,9 @@
-import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ListViewPage extends StatefulWidget {
-  const ListViewPage({Key? key}) : super(key: key);
+  final String title;
+  const ListViewPage(this.title, {Key? key}) : super(key: key);
 
   @override
   State<ListViewPage> createState() => _ListViewPage();
@@ -47,7 +47,7 @@ class _ListViewPage extends State<ListViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(Const.listView),
+        title: Text(widget.title),
       ),
       body: ListView(
         children: strings.map((String string) {

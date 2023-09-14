@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:first_flutter_app/pages/sqlite/helper/student_bll.dart';
+import 'package:first_flutter_app/pages/sqlite/model/student_model.dart';
+import 'package:first_flutter_app/pages/sqlite/pages/sql_update_student.dart';
 import 'package:first_flutter_app/utils/const.dart';
-import 'package:first_flutter_app/views/sqlite/helper/student_bll.dart';
-import 'package:first_flutter_app/views/sqlite/model/student_model.dart';
-import 'package:first_flutter_app/views/sqlite/pages/sql_update_student.dart';
 import 'package:flutter/material.dart';
 
 class UpdateData extends StatefulWidget {
@@ -38,25 +38,30 @@ class UpdateDataState extends State<UpdateData> {
           return Column(
             children: [
               Card(
-                  elevation: 3.0,
-                  child: ListTile(
-                      trailing: const Icon(Icons.update),
-                      subtitle: Text(values[index].studentEdu),
-                      title: Text(values[index].studentName),
-                      onTap: () async {
-                        String? result = await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    UpdateStudentForm(values[index])));
+                elevation: 3.0,
+                child: ListTile(
+                  trailing: const Icon(Icons.update),
+                  subtitle: Text(values[index].studentEdu),
+                  title: Text(values[index].studentName),
+                  onTap: () async {
+                    String? result = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UpdateStudentForm(
+                          values[index],
+                        ),
+                      ),
+                    );
 
-                        //Update list
-                        if (result != null && result == Const.update) {
-                          setState(() {
-                            studentList = getStudentList();
-                          });
-                        }
-                      })),
+                    //Update list
+                    if (result != null && result == Const.isUpdated) {
+                      setState(() {
+                        studentList = getStudentList();
+                      });
+                    }
+                  },
+                ),
+              ),
             ],
           );
         },
@@ -69,7 +74,7 @@ class UpdateDataState extends State<UpdateData> {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
           case ConnectionState.waiting:
-            return const Text('loading...');
+            return const Text('Loading...');
           default:
             if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');

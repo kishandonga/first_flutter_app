@@ -1,8 +1,8 @@
-import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class ProgressIndicatorDemo extends StatefulWidget {
-  const ProgressIndicatorDemo({Key? key}) : super(key: key);
+  final String title;
+  const ProgressIndicatorDemo(this.title, {Key? key}) : super(key: key);
 
   @override
   State<ProgressIndicatorDemo> createState() => _ProgressIndicatorDemoState();
@@ -97,7 +97,7 @@ class _ProgressIndicatorDemoState extends State<ProgressIndicatorDemo>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(Const.progressIndicator)),
+      appBar: AppBar(title: Text(widget.title)),
       body: Center(
         child: SingleChildScrollView(
           child: DefaultTextStyle(

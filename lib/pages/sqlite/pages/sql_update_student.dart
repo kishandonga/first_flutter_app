@@ -1,6 +1,6 @@
+import 'package:first_flutter_app/pages/sqlite/helper/student_bll.dart';
+import 'package:first_flutter_app/pages/sqlite/model/student_model.dart';
 import 'package:first_flutter_app/utils/const.dart';
-import 'package:first_flutter_app/views/sqlite/helper/student_bll.dart';
-import 'package:first_flutter_app/views/sqlite/model/student_model.dart';
 import 'package:flutter/material.dart';
 
 class UpdateStudentForm extends StatefulWidget {
@@ -20,7 +20,7 @@ class UpdateStudentFormState extends State<UpdateStudentForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(Const.update),
+        title: const Text('Update'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -85,23 +85,24 @@ class UpdateStudentFormState extends State<UpdateStudentForm> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: SizedBox(
-                        height: 35.0,
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            // Validate will return true if the form is valid, or false if
-                            // the form is invalid.
-                            if (_formKey.currentState?.validate() ?? false) {
-                              _formKey.currentState?.save();
+                      height: 35.0,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          // Validate will return true if the form is valid, or false if
+                          // the form is invalid.
+                          if (_formKey.currentState?.validate() ?? false) {
+                            _formKey.currentState?.save();
 
-                              StudentBLL bll = StudentBLL();
-                              studentModel.id = widget.model.id;
-                              bll.update(studentModel);
+                            StudentBLL bll = StudentBLL();
+                            studentModel.id = widget.model.id;
+                            bll.update(studentModel);
 
-                              Navigator.pop(context, Const.update);
-                            }
-                          },
-                          child: const Text(Const.update),
-                        )),
+                            Navigator.pop(context, Const.isUpdated);
+                          }
+                        },
+                        child: const Text('Update'),
+                      ),
+                    ),
                   )
                 ]),
               ],

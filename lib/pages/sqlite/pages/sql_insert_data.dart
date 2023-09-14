@@ -1,6 +1,5 @@
-import 'package:first_flutter_app/utils/const.dart';
-import 'package:first_flutter_app/views/sqlite/helper/student_bll.dart';
-import 'package:first_flutter_app/views/sqlite/model/student_model.dart';
+import 'package:first_flutter_app/pages/sqlite/helper/student_bll.dart';
+import 'package:first_flutter_app/pages/sqlite/model/student_model.dart';
 import 'package:flutter/material.dart';
 
 class InsertData extends StatelessWidget {
@@ -89,29 +88,30 @@ class _StudentFormState extends State<StudentForm> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: SizedBox(
-                      height: 35.0,
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          // Validate will return true if the form is valid, or false if
-                          // the form is invalid.
-                          if (_formKey.currentState?.validate() ?? false) {
-                            _formKey.currentState?.save();
+                    height: 35.0,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        // Validate will return true if the form is valid, or false if
+                        // the form is invalid.
+                        if (_formKey.currentState?.validate() ?? false) {
+                          _formKey.currentState?.save();
 
-                            StudentBLL bll = StudentBLL();
-                            int id = await bll.getCount() + 1;
-                            studentModel.id = id;
-                            bll.insertStudent(studentModel);
-                            if (mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Data inserted'),
-                                ),
-                              );
-                            }
+                          StudentBLL bll = StudentBLL();
+                          int id = await bll.getCount() + 1;
+                          studentModel.id = id;
+                          bll.insertStudent(studentModel);
+                          if (mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Data inserted'),
+                              ),
+                            );
                           }
-                        },
-                        child: const Text(Const.insert),
-                      )),
+                        }
+                      },
+                      child: const Text('Insert'),
+                    ),
+                  ),
                 )
               ]),
             ],

@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class PullToRefreshDemo extends StatefulWidget {
-  const PullToRefreshDemo({Key? key}) : super(key: key);
+  final String title;
+  const PullToRefreshDemo(this.title, {Key? key}) : super(key: key);
 
   @override
   State<PullToRefreshDemo> createState() => PullToRefreshDemoState();
@@ -55,7 +55,7 @@ class PullToRefreshDemoState extends State<PullToRefreshDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(title: const Text(Const.pullToRefresh), actions: [
+      appBar: AppBar(title: Text(widget.title), actions: [
         IconButton(
             icon: const Icon(Icons.refresh),
             tooltip: 'Refresh',

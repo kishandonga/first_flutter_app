@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:first_flutter_app/views/sqlite/helper/student_bll.dart';
-import 'package:first_flutter_app/views/sqlite/model/student_model.dart';
+import 'package:first_flutter_app/pages/sqlite/helper/student_bll.dart';
+import 'package:first_flutter_app/pages/sqlite/model/student_model.dart';
 import 'package:flutter/material.dart';
 
 class ViewStudentData extends StatelessWidget {

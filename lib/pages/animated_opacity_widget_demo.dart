@@ -1,8 +1,8 @@
-import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedOpacityWidgetDemo extends StatefulWidget {
-  const AnimatedOpacityWidgetDemo({Key? key}) : super(key: key);
+  final String title;
+  const AnimatedOpacityWidgetDemo(this.title, {Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _AnimatedOpacityWidgetDemoState();
@@ -15,7 +15,7 @@ class _AnimatedOpacityWidgetDemoState extends State<AnimatedOpacityWidgetDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(Const.animatedOpacityDemo),
+        title: Text(widget.title),
       ),
       body: Column(
         children: [

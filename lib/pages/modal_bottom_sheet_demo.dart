@@ -1,13 +1,13 @@
-import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class ModalBottomSheetDemo extends StatelessWidget {
-  const ModalBottomSheetDemo({Key? key}) : super(key: key);
+  final String title;
+  const ModalBottomSheetDemo(this.title, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text(Const.modalBottomSheet)),
+        appBar: AppBar(title: Text(title)),
         body: Center(
             child: ElevatedButton(
                 child: const Text('SHOW BOTTOM SHEET'),

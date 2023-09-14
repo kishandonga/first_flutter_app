@@ -1,10 +1,10 @@
 import 'dart:ui' as ui;
 
-import 'package:first_flutter_app/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class CategoryStatePage extends StatefulWidget {
-  const CategoryStatePage({Key? key}) : super(key: key);
+  final String title;
+  const CategoryStatePage(this.title, {Key? key}) : super(key: key);
 
   @override
   State<CategoryStatePage> createState() => CategoryPageState();
@@ -46,7 +46,7 @@ class CategoryPageState extends State<CategoryStatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(Const.listView)),
+      appBar: AppBar(title: Text(widget.title)),
       body: ListView(
         padding: const EdgeInsets.only(top: 8.0, right: 0.0, left: 0.0),
         children: buildListCategories(list),

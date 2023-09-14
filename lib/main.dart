@@ -1,6 +1,5 @@
-import 'package:first_flutter_app/utils/const.dart';
-import 'package:first_flutter_app/views/dashboard_view.dart';
-import 'package:first_flutter_app/views/sqlite/helper/database_client.dart';
+import 'package:first_flutter_app/pages/home_page.dart';
+import 'package:first_flutter_app/pages/sqlite/helper/database_client.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -8,13 +7,12 @@ Future<void> main() async {
   await DatabaseClient.instance.init();
 
   runApp(MaterialApp(
-    title: Const.appName,
     theme: ThemeData(
       primarySwatch: Colors.blue,
       colorScheme: ColorScheme.fromSwatch().copyWith(
-        secondary: Colors.red, // Your accent color
+        secondary: Colors.red,
       ),
     ),
-    home: const DashboardPage(),
+    home: const HomePage(),
   ));
 }

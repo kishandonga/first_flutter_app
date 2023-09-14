@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TextFormFieldDemo extends StatefulWidget {
-  const TextFormFieldDemo({Key? key}) : super(key: key);
+  final String title;
+  const TextFormFieldDemo(this.title, {Key? key}) : super(key: key);
 
   @override
   State<TextFormFieldDemo> createState() => TextFormFieldDemoState();
@@ -163,7 +164,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Text fields'),
+        title: Text(widget.title),
       ),
       body: SafeArea(
         top: false,
